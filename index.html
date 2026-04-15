@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorting Algorithms</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+  :root {
+    --amber:  #f5a623;
+    --green:  #4ecb8d;
+    --purple: #a78bfa;
+    --blue:   #60a5fa;
+    --red:    #f87171;
+    --bg:     #0a0a0f;
+    --bg2:    #10101a;
+    --bg3:    #181824;
+    --border: #2a2a3a;
+    --text:   #e8e8f0;
+    --muted:  #8888a8;
+  }
+
+  .reveal-viewport { background: var(--bg); }
+  .reveal .slides section { background: transparent; }
+
+  .reveal { font-family: 'DM Sans', sans-serif; color: var(--text); }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+  .reveal h1 { font-size: 1.6em; color: var(--amber); line-height: 1.1; }
+  .reveal h2 { font-size: 1.1em; color: var(--amber); margin-bottom: .2em; }
+  .reveal h3 { font-size: .78em; color: var(--green); margin-bottom: .15em; }
+  .reveal p  { font-size: .56em; line-height: 1.45; color: var(--text); }
+  .reveal li { font-size: .54em; line-height: 1.45; margin-bottom: .1em; }
+  .reveal code { font-family: 'JetBrains Mono', monospace; font-size: .72em; }
+  .reveal pre  { box-shadow: none; background: var(--bg3); border: 1px solid var(--border);
+                 border-radius: 6px; padding: .3em .5em; margin: .25em 0; }
+  .reveal pre code { font-size: .52em; line-height: 1.35; background: transparent; color: #cdd6f4; }
+
+  /* ── slide chrome ── */
+  .slide-hdr {
+    display: flex; align-items: center; gap: .4em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .2em; margin-bottom: .3em;
+  }
+  .slide-hdr .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .42em; font-weight: 500;
+    color: var(--bg); background: var(--amber);
+    padding: .1em .4em; border-radius: 3px;
+    letter-spacing: .04em;
+  }
+  .slide-hdr h2 { margin: 0; font-size: .95em; }
+
+  /* ── two-column ── */
+  .cols   { display: grid; gap: .5em; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cols-6040 { grid-template-columns: 6fr 4fr; }
+  .cols-4060 { grid-template-columns: 4fr 6fr; }
+
+  /* ── cards ── */
+  .card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: .35em .6em;
+  }
+  .card.amber { border-left: 3px solid var(--amber); }
+  .card.green { border-left: 3px solid var(--green); }
+  .card.purple{ border-left: 3px solid var(--purple); }
+  .card.blue  { border-left: 3px solid var(--blue); }
+  .card.red   { border-left: 3px solid var(--red); }
+  .card h3 { font-size: .64em; margin: 0 0 .12em; }
+  .card p  { font-size: .52em; margin: 0; color: #b8b8d0; }
+  .card ul { margin: 0; padding-left: 1em; }
+  .card li { font-size: .52em; color: #b8b8d0; margin-bottom: .02em; }
+
+  /* ── table ── */
+  .reveal table { width: 100%; border-collapse: collapse; font-size: .5em; }
+  .reveal table th { background: var(--bg3); color: var(--amber); font-weight: 600;
+                     padding: .2em .4em; border: 1px solid var(--border); text-align: left; }
+  .reveal table td { padding: .18em .4em; border: 1px solid var(--border); color: #ccc; }
+  .reveal table tr:nth-child(even) td { background: #0e0e18; }
+
+  /* ── accent spans ── */
+  .a  { color: var(--amber); font-weight: 600; }
+  .g  { color: var(--green); font-weight: 600; }
+  .p  { color: var(--purple); font-weight: 600; }
+  .b  { color: var(--blue); font-weight: 600; }
+  .r  { color: var(--red); font-weight: 600; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ── SVG graph diagrams ── */
+  svg.diagram { display: block; margin: 0 auto; overflow: visible; }
+
+  /* ── pill badges ── */
+  .pill {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: .44em; padding: .08em .4em; border-radius: 99px;
+    border: 1px solid; margin: 0 .08em;
+  }
+  .pill.amber { color: var(--amber); border-color: var(--amber); }
+  .pill.green { color: var(--green); border-color: var(--green); }
+  .pill.purple{ color: var(--purple); border-color: var(--purple); }
+  .pill.blue  { color: var(--blue); border-color: var(--blue); }
+
+  /* ── footer — hidden ── */
+  .reveal .slide-footer { display: none; }
+  /* title slide special */
+  .title-slide h1 { font-size: 1.8em; }
+  .title-slide .subtitle {
+    font-size: .7em; color: var(--green); font-family: 'DM Sans', sans-serif;
+    font-weight: 300; letter-spacing: .04em; margin: .3em 0 .6em;
+  }
+  .title-slide .meta { font-size: .48em; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  /* ── super-step animator ── */
+  .ss-row {
+    display: flex; gap: .25em; align-items: center;
+    margin: .1em 0; font-size: .55em; font-family: 'JetBrains Mono', monospace;
+  }
+  .ss-node {
+    padding: .2em .55em; border-radius: 5px; font-size: .9em;
+    background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+  }
+  .ss-node.active { background: #1a2a1a; border-color: var(--green); color: var(--green); }
+  .ss-node.done   { background: #1a1a2a; border-color: var(--purple); color: var(--purple); }
+  .ss-arrow { color: var(--amber); }
+  .ss-label { font-size: .8em; color: var(--muted); margin-left: .3em; }
+
+  /* reduce default margins */
+  .reveal ul, .reveal ol { margin: .15em 0 .15em 1em; }
+.reveal .slides > section { display: flex !important; flex-direction: column !important; overflow-y: auto !important; align-items: stretch !important; justify-content: flex-start !important; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 01 — Title
+══════════════════════════════════════════════════════════════════ -->
+<section class="title-slide" data-background-color="#0a0a0f">
+  <div style="font-family:'JetBrains Mono',monospace; font-size:.5em; color:var(--muted); margin-bottom:.4em; letter-spacing:.1em;">COMPUTER SCIENCE FUNDAMENTALS SERIES</div>
+  <h1>Sorting<br>Algorithms</h1>
+  <div class="subtitle">
+    Comparison sorts &middot; Non-comparison sorts &middot; Complexity analysis &middot;<br>
+    Divide and conquer &middot; Stability &middot; Real-world implementations
+  </div>
+  <div style="width:60px; height:3px; background:var(--amber); margin-bottom:1.4em;"></div>
+  <div class="meta">
+    Mid-level software engineer track &nbsp;&middot;&nbsp; 21 slides
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 02 — Why Study Sorting?
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">02</span>
+    <h2>Why Study Sorting?</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <h3>Sorting is everywhere</h3>
+      <p>Sorting is the most fundamental algorithmic problem in computer science. Efficient sorting enables efficient searching, merging, and data presentation.</p>
+      <ul>
+        <li>Database <code>ORDER BY</code> clauses execute a sort</li>
+        <li>Binary search requires sorted input &mdash; <code>O(log n)</code> vs <code>O(n)</code></li>
+        <li>Merge operations (joins, set intersection) assume sorted streams</li>
+        <li>Rendering leaderboards, timelines, search results</li>
+        <li>Scheduling, priority queues, and resource allocation</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What we will cover</h3>
+      <div style="display:flex; flex-direction:column; gap:.3em; margin-top:0.3em">
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">1</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Comparison-based sorts</strong> &mdash; Bubble, Selection, Insertion, Merge, Quick, Heap</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">2</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Non-comparison sorts</strong> &mdash; Counting, Radix, Bucket</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--purple)">3</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Complexity analysis</strong> &mdash; time, space, best/worst/average cases</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">4</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Properties</strong> &mdash; stability, adaptivity, in-place</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">5</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Real-world implementations</strong> &mdash; Timsort, Introsort, pdqsort</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 03 — Sorting Taxonomy
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">03</span>
+    <h2>Sorting Taxonomy</h2>
+  </div>
+  <div class="cols cols-3" style="margin-top:0.5em">
+    <div class="card amber">
+      <h3>Simple / Quadratic</h3>
+      <p>Easy to implement. <code>O(n&sup2;)</code> average and worst case. Practical for small inputs or nearly-sorted data.</p>
+      <div style="margin-top:0.5em">
+        <span class="pill amber">Bubble</span>
+        <span class="pill amber">Selection</span>
+        <span class="pill amber">Insertion</span>
+      </div>
+      <p style="margin-top:0.7em;font-size:0.6em;color:var(--muted)">Insertion sort is the best of the three in practice</p>
+    </div>
+    <div class="card green">
+      <h3>Efficient / Linearithmic</h3>
+      <p>Divide-and-conquer or heap-based. <code>O(n log n)</code> average case. The workhorse algorithms.</p>
+      <div style="margin-top:0.5em">
+        <span class="pill green">Merge Sort</span>
+        <span class="pill green">Quick Sort</span>
+        <span class="pill green">Heap Sort</span>
+      </div>
+      <p style="margin-top:0.7em;font-size:0.6em;color:var(--muted)">Quick sort is fastest in practice for random data</p>
+    </div>
+    <div class="card purple">
+      <h3>Non-Comparison</h3>
+      <p>Exploit structure of keys to beat <code>&Omega;(n log n)</code>. Linear time under constraints on key range or distribution.</p>
+      <div style="margin-top:0.5em">
+        <span class="pill purple">Counting</span>
+        <span class="pill purple">Radix</span>
+        <span class="pill purple">Bucket</span>
+      </div>
+      <p style="margin-top:0.7em;font-size:0.6em;color:var(--muted)">Require assumptions about input distribution</p>
+    </div>
+  </div>
+  <div class="card amber" style="margin-top:0.8em">
+    <p><strong style="color:var(--amber)">Key insight:</strong> no single algorithm is best for all inputs. The right choice depends on data size, distribution, memory constraints, and whether stability is required.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 04 — Bubble Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">04</span>
+    <h2>Bubble Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Repeatedly swap adjacent elements if they are in the wrong order. The largest unsorted element "bubbles up" to its correct position each pass.</p>
+      <pre><code class="python">def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break  # already sorted</code></pre>
+      <div class="card blue" style="margin-top:0.5em">
+        <p>The early-exit optimisation (<code>swapped</code> flag) makes bubble sort <strong style="color:var(--amber)">adaptive</strong> &mdash; it runs in <code>O(n)</code> on already-sorted input.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best case</td><td><code>O(n)</code> &mdash; already sorted</td></tr>
+        <tr><td>Average case</td><td><code>O(n&sup2;)</code></td></tr>
+        <tr><td>Worst case</td><td><code>O(n&sup2;)</code> &mdash; reverse sorted</td></tr>
+        <tr><td>Space</td><td><code>O(1)</code></td></tr>
+        <tr><td>Stable</td><td>Yes</td></tr>
+        <tr><td>In-place</td><td>Yes</td></tr>
+        <tr><td>Adaptive</td><td>Yes (with early exit)</td></tr>
+      </table>
+      <div class="card red" style="margin-top:0.5em">
+        <p><strong style="color:var(--red)">When to use:</strong> Almost never in production. Useful only for teaching or when code simplicity is paramount and <code>n &lt; 20</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 05 — Selection Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">05</span>
+    <h2>Selection Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Find the minimum element in the unsorted region and swap it into the next position of the sorted region. Exactly <code>n - 1</code> swaps &mdash; minimal writes.</p>
+      <pre><code class="python">def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]</code></pre>
+      <div class="card amber" style="margin-top:0.5em">
+        <p><strong style="color:var(--amber)">Minimal swaps:</strong> selection sort performs exactly <code>O(n)</code> swaps regardless of input. Good when writes are expensive (e.g. flash memory).</p>
+      </div>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best case</td><td><code>O(n&sup2;)</code></td></tr>
+        <tr><td>Average case</td><td><code>O(n&sup2;)</code></td></tr>
+        <tr><td>Worst case</td><td><code>O(n&sup2;)</code></td></tr>
+        <tr><td>Space</td><td><code>O(1)</code></td></tr>
+        <tr><td>Stable</td><td>No (default implementation)</td></tr>
+        <tr><td>In-place</td><td>Yes</td></tr>
+        <tr><td>Adaptive</td><td>No</td></tr>
+      </table>
+      <div class="card red" style="margin-top:0.5em">
+        <p><strong style="color:var(--red)">Not stable:</strong> swapping distant elements can change the relative order of equal keys. A linked-list variant can be made stable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 06 — Insertion Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">06</span>
+    <h2>Insertion Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Build a sorted sub-array one element at a time by inserting each new element into its correct position. The way most people sort a hand of playing cards.</p>
+      <pre><code class="python">def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key</code></pre>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">The best quadratic sort.</strong> Excellent cache locality, low overhead, and adaptive. Used as the base case in Timsort and Introsort for small sub-arrays (<code>n &le; 32</code>).</p>
+      </div>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best case</td><td><code>O(n)</code> &mdash; already sorted</td></tr>
+        <tr><td>Average case</td><td><code>O(n&sup2;)</code></td></tr>
+        <tr><td>Worst case</td><td><code>O(n&sup2;)</code> &mdash; reverse sorted</td></tr>
+        <tr><td>Space</td><td><code>O(1)</code></td></tr>
+        <tr><td>Stable</td><td>Yes</td></tr>
+        <tr><td>In-place</td><td>Yes</td></tr>
+        <tr><td>Adaptive</td><td>Yes</td></tr>
+      </table>
+      <div class="card blue" style="margin-top:0.5em">
+        <p><strong style="color:var(--blue)">Online algorithm:</strong> insertion sort can sort a stream as elements arrive &mdash; it does not need all input up front.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 07 — Merge Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">07</span>
+    <h2>Merge Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Divide the array in half, recursively sort each half, then merge the two sorted halves. The canonical divide-and-conquer sorting algorithm.</p>
+      <pre><code class="python">def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left  = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(L, R):
+    result = []
+    i = j = 0
+    while i < len(L) and j < len(R):
+        if L[i] <= R[j]:
+            result.append(L[i]); i += 1
+        else:
+            result.append(R[j]); j += 1
+    result.extend(L[i:])
+    result.extend(R[j:])
+    return result</code></pre>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Average case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Worst case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Space</td><td><code>O(n)</code></td></tr>
+        <tr><td>Stable</td><td>Yes</td></tr>
+        <tr><td>In-place</td><td>No</td></tr>
+        <tr><td>Adaptive</td><td>No (standard version)</td></tr>
+      </table>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">Guaranteed O(n log n).</strong> The only common comparison sort with no quadratic worst case. Preferred when stability is required and extra memory is acceptable.</p>
+      </div>
+      <div class="card purple" style="margin-top:0.3em">
+        <p><strong style="color:var(--purple)">External sorting:</strong> merge sort naturally extends to disk-based sorting &mdash; merge sorted runs that each fit in memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 08 — Quick Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">08</span>
+    <h2>Quick Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Choose a pivot, partition the array so all elements less than the pivot come before it and all greater come after, then recursively sort the partitions.</p>
+      <pre><code class="python">def quicksort(arr, lo, hi):
+    if lo < hi:
+        p = partition(arr, lo, hi)
+        quicksort(arr, lo, p - 1)
+        quicksort(arr, p + 1, hi)
+
+def partition(arr, lo, hi):
+    pivot = arr[hi]
+    i = lo - 1
+    for j in range(lo, hi):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[hi] = arr[hi], arr[i + 1]
+    return i + 1</code></pre>
+      <div class="card amber" style="margin-top:0.3em">
+        <p><strong style="color:var(--amber)">Pivot selection matters.</strong> Naive last-element pivot degrades to <code>O(n&sup2;)</code> on sorted input. Median-of-three or random pivot avoids this.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Average case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Worst case</td><td><code>O(n&sup2;)</code> &mdash; bad pivot</td></tr>
+        <tr><td>Space</td><td><code>O(log n)</code> stack</td></tr>
+        <tr><td>Stable</td><td>No</td></tr>
+        <tr><td>In-place</td><td>Yes</td></tr>
+        <tr><td>Adaptive</td><td>No (standard version)</td></tr>
+      </table>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">Fastest in practice</strong> for random data due to excellent cache behaviour &mdash; sequential memory access within partitions. Small constant factor.</p>
+      </div>
+      <div class="card red" style="margin-top:0.3em">
+        <p><strong style="color:var(--red)">Adversarial inputs:</strong> an attacker who knows your pivot strategy can craft <code>O(n&sup2;)</code> inputs. Randomised pivot or Introsort mitigates this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 09 — Heap Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">09</span>
+    <h2>Heap Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Build a max-heap from the input, then repeatedly extract the maximum element and place it at the end of the array. Uses the heap property to maintain order.</p>
+      <pre><code class="python">def heap_sort(arr):
+    n = len(arr)
+    # Build max-heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+    # Extract elements one by one
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, i, 0)
+
+def heapify(arr, n, i):
+    largest = i
+    left, right = 2 * i + 1, 2 * i + 2
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)</code></pre>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Average case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Worst case</td><td><code>O(n log n)</code></td></tr>
+        <tr><td>Space</td><td><code>O(1)</code></td></tr>
+        <tr><td>Stable</td><td>No</td></tr>
+        <tr><td>In-place</td><td>Yes</td></tr>
+        <tr><td>Adaptive</td><td>No</td></tr>
+      </table>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">O(n log n) guaranteed + O(1) space.</strong> The only comparison sort that is both worst-case optimal and in-place.</p>
+      </div>
+      <div class="card amber" style="margin-top:0.3em">
+        <p><strong style="color:var(--amber)">Cache-unfriendly.</strong> Heap sort makes many non-sequential memory accesses (parent/child jumps), making it slower than quicksort in practice despite identical asymptotic complexity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 10 — Divide and Conquer Paradigm
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">10</span>
+    <h2>The Divide-and-Conquer Paradigm</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <h3>Three steps</h3>
+      <div style="display:flex; flex-direction:column; gap:.3em; margin-top:0.3em">
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">1</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Divide</strong> &mdash; split the problem into smaller sub-problems of the same type</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">2</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Conquer</strong> &mdash; recursively solve each sub-problem (base case: trivially sorted)</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
+          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--purple)">3</span>
+          <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Combine</strong> &mdash; merge the solutions of sub-problems into the overall solution</span>
+        </div>
+      </div>
+      <div class="card blue" style="margin-top:0.6em">
+        <p><strong style="color:var(--blue)">Master Theorem:</strong> for recurrences of the form <code>T(n) = aT(n/b) + O(n<sup>d</sup>)</code>, the solution depends on the relationship between <code>log<sub>b</sub>a</code> and <code>d</code>.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Merge Sort vs Quick Sort</h3>
+      <table>
+        <tr><th>Aspect</th><th>Merge Sort</th><th>Quick Sort</th></tr>
+        <tr><td>Divide cost</td><td><code>O(1)</code> &mdash; split at midpoint</td><td><code>O(n)</code> &mdash; partition</td></tr>
+        <tr><td>Combine cost</td><td><code>O(n)</code> &mdash; merge</td><td><code>O(1)</code> &mdash; nothing</td></tr>
+        <tr><td>Recurrence</td><td><code>T(n) = 2T(n/2) + O(n)</code></td><td><code>T(n) = T(k) + T(n-k-1) + O(n)</code></td></tr>
+        <tr><td>Work location</td><td>On the way <strong>up</strong> (merge)</td><td>On the way <strong>down</strong> (partition)</td></tr>
+      </table>
+      <div class="card amber" style="margin-top:0.6em">
+        <p><strong style="color:var(--amber)">Key difference:</strong> merge sort does the hard work when combining (merging). Quick sort does the hard work when dividing (partitioning). Both achieve <code>O(n log n)</code> average case.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 11 — Lower Bound for Comparison Sorts
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">11</span>
+    <h2>Lower Bound for Comparison Sorts</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <h3>The decision-tree argument</h3>
+      <p>Any comparison-based sorting algorithm can be modelled as a binary decision tree, where each internal node is a comparison and each leaf is a permutation of the input.</p>
+      <ul>
+        <li>For <code>n</code> elements there are <code>n!</code> possible permutations</li>
+        <li>The tree must have at least <code>n!</code> leaves</li>
+        <li>A binary tree with <code>L</code> leaves has height at least <code>log<sub>2</sub> L</code></li>
+        <li>Therefore: height &ge; <code>log<sub>2</sub>(n!)</code></li>
+        <li>By Stirling's approximation: <code>log<sub>2</sub>(n!) = &Omega;(n log n)</code></li>
+      </ul>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">Conclusion:</strong> no comparison-based sort can do better than <code>&Omega;(n log n)</code> comparisons in the worst case. Merge sort and heap sort are <strong>asymptotically optimal</strong>.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Decision tree for 3 elements</h3>
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:.5em;">
+        <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+          <!-- Root: a<b? -->
+          <rect x="130" y="5" width="80" height="24" rx="4" fill="#2e1e00" stroke="#f5a623"/>
+          <text x="170" y="21" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f5a623">a &lt; b ?</text>
+          <!-- Left: a<c? -->
+          <line x1="150" y1="29" x2="80" y2="55" stroke="#4ecb8d" stroke-width="1"/>
+          <text x="108" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#4ecb8d">yes</text>
+          <rect x="40" y="55" width="80" height="24" rx="4" fill="#001e16" stroke="#4ecb8d"/>
+          <text x="80" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#4ecb8d">a &lt; c ?</text>
+          <!-- Right: b<c? -->
+          <line x1="190" y1="29" x2="260" y2="55" stroke="#f87171" stroke-width="1"/>
+          <text x="230" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#f87171">no</text>
+          <rect x="220" y="55" width="80" height="24" rx="4" fill="#1a0e0e" stroke="#f87171"/>
+          <text x="260" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f87171">b &lt; c ?</text>
+          <!-- Left-Left: a,b,c -->
+          <line x1="60" y1="79" x2="30" y2="105" stroke="#4ecb8d" stroke-width="1"/>
+          <rect x="5" y="105" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
+          <text x="30" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">a,b,c</text>
+          <!-- Left-Right: b<c? -->
+          <line x1="100" y1="79" x2="120" y2="105" stroke="#f87171" stroke-width="1"/>
+          <rect x="90" y="105" width="64" height="24" rx="4" fill="#2e1e00" stroke="#f5a623"/>
+          <text x="122" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f5a623">b &lt; c ?</text>
+          <!-- Left-Right-Left: a,c,b -->
+          <line x1="105" y1="129" x2="80" y2="155" stroke="#4ecb8d" stroke-width="1"/>
+          <rect x="55" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
+          <text x="80" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">a,c,b</text>
+          <!-- Left-Right-Right: c,a,b -->
+          <line x1="138" y1="129" x2="155" y2="155" stroke="#f87171" stroke-width="1"/>
+          <rect x="130" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
+          <text x="155" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">c,a,b</text>
+          <!-- Right-Left: b,a,c -->
+          <line x1="240" y1="79" x2="215" y2="105" stroke="#4ecb8d" stroke-width="1"/>
+          <rect x="190" y="105" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
+          <text x="215" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">b,a,c</text>
+          <!-- Right-Right: a<c? -->
+          <line x1="280" y1="79" x2="295" y2="105" stroke="#f87171" stroke-width="1"/>
+          <rect x="265" y="105" width="64" height="24" rx="4" fill="#2e1e00" stroke="#f5a623"/>
+          <text x="297" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f5a623">a &lt; c ?</text>
+          <!-- Right-Right-Left: b,c,a -->
+          <line x1="280" y1="129" x2="260" y2="155" stroke="#4ecb8d" stroke-width="1"/>
+          <rect x="235" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
+          <text x="260" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">b,c,a</text>
+          <!-- Right-Right-Right: c,b,a -->
+          <line x1="312" y1="129" x2="320" y2="155" stroke="#f87171" stroke-width="1"/>
+          <rect x="295" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
+          <text x="320" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">c,b,a</text>
+          <!-- Legend -->
+          <text x="170" y="200" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#8888a8">3! = 6 leaves &rarr; height &ge; ceil(log&#8322; 6) = 3 comparisons</text>
+        </svg>
+      </div>
+      <div class="card amber" style="margin-top:0.3em">
+        <p><strong style="color:var(--amber)">This is why non-comparison sorts exist.</strong> By exploiting key structure (integer ranges, digit decomposition), we can bypass the <code>&Omega;(n log n)</code> barrier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 12 — Counting Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">12</span>
+    <h2>Counting Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Count occurrences of each key value, compute prefix sums, then place elements directly into their final positions. No comparisons needed.</p>
+      <pre><code class="python">def counting_sort(arr, max_val):
+    count = [0] * (max_val + 1)
+    output = [0] * len(arr)
+
+    for x in arr:
+        count[x] += 1
+    for i in range(1, max_val + 1):
+        count[i] += count[i - 1]
+
+    # Traverse in reverse for stability
+    for x in reversed(arr):
+        output[count[x] - 1] = x
+        count[x] -= 1
+    return output</code></pre>
+      <div class="card blue" style="margin-top:0.5em">
+        <p><strong style="color:var(--blue)">Stable by design.</strong> The reverse traversal preserves the original order of equal elements. This property is critical when counting sort is used as a sub-routine in radix sort.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Time</td><td><code>O(n + k)</code> where <code>k</code> = key range</td></tr>
+        <tr><td>Space</td><td><code>O(n + k)</code></td></tr>
+        <tr><td>Stable</td><td>Yes</td></tr>
+        <tr><td>In-place</td><td>No</td></tr>
+        <tr><td>Comparison-based</td><td>No</td></tr>
+      </table>
+      <div class="card amber" style="margin-top:0.5em">
+        <p><strong style="color:var(--amber)">Constraint:</strong> keys must be non-negative integers (or mappable to them). When <code>k &gt;&gt; n</code>, the space and time become impractical &mdash; e.g. sorting 100 floating-point numbers.</p>
+      </div>
+      <div class="card green" style="margin-top:0.3em">
+        <p><strong style="color:var(--green)">Best for:</strong> sorting integers in a known, small range &mdash; ages, scores, characters, pixel values.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 13 — Radix Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">13</span>
+    <h2>Radix Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Sort integers digit by digit, from least significant to most significant (LSD) or vice versa (MSD). Uses a stable sub-sort (typically counting sort) at each digit position.</p>
+      <pre><code class="python">def radix_sort(arr):
+    if not arr:
+        return arr
+    max_val = max(arr)
+    exp = 1
+    while max_val // exp > 0:
+        counting_sort_by_digit(arr, exp)
+        exp *= 10
+
+def counting_sort_by_digit(arr, exp):
+    n = len(arr)
+    output = [0] * n
+    count = [0] * 10
+    for x in arr:
+        idx = (x // exp) % 10
+        count[idx] += 1
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+    for x in reversed(arr):
+        idx = (x // exp) % 10
+        output[count[idx] - 1] = x
+        count[idx] -= 1
+    arr[:] = output</code></pre>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Time</td><td><code>O(d(n + k))</code> &mdash; <code>d</code> digits, base <code>k</code></td></tr>
+        <tr><td>Space</td><td><code>O(n + k)</code></td></tr>
+        <tr><td>Stable</td><td>Yes (LSD variant)</td></tr>
+        <tr><td>In-place</td><td>No</td></tr>
+        <tr><td>Comparison-based</td><td>No</td></tr>
+      </table>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">Effectively linear</strong> when the number of digits <code>d</code> is constant (e.g. 32-bit integers have at most 10 decimal digits). Time becomes <code>O(n)</code>.</p>
+      </div>
+      <div class="card purple" style="margin-top:0.3em">
+        <p><strong style="color:var(--purple)">LSD vs MSD:</strong> LSD processes least-significant digit first and is simpler. MSD processes most-significant first and can short-circuit on prefixes &mdash; useful for strings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 14 — Bucket Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">14</span>
+    <h2>Bucket Sort</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <p>Distribute elements into buckets based on their value, sort each bucket individually (often with insertion sort), then concatenate the buckets.</p>
+      <pre><code class="python">def bucket_sort(arr):
+    if not arr:
+        return arr
+    n = len(arr)
+    buckets = [[] for _ in range(n)]
+    min_val, max_val = min(arr), max(arr)
+    spread = max_val - min_val or 1
+
+    for x in arr:
+        idx = int((x - min_val) / spread * (n - 1))
+        buckets[idx].append(x)
+
+    for bucket in buckets:
+        insertion_sort(bucket)
+
+    return [x for bucket in buckets for x in bucket]</code></pre>
+      <div class="card amber" style="margin-top:0.5em">
+        <p><strong style="color:var(--amber)">Assumes uniform distribution.</strong> If all elements land in one bucket, performance degrades to the sub-sort's complexity &mdash; <code>O(n&sup2;)</code> with insertion sort.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Properties</h3>
+      <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Best / average</td><td><code>O(n + k)</code> &mdash; uniform distribution</td></tr>
+        <tr><td>Worst case</td><td><code>O(n&sup2;)</code> &mdash; all in one bucket</td></tr>
+        <tr><td>Space</td><td><code>O(n + k)</code></td></tr>
+        <tr><td>Stable</td><td>Yes (if sub-sort is stable)</td></tr>
+        <tr><td>In-place</td><td>No</td></tr>
+        <tr><td>Comparison-based</td><td>Hybrid</td></tr>
+      </table>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">Best for:</strong> floating-point numbers uniformly distributed over a known range. Also used for sorting strings by first character.</p>
+      </div>
+      <div class="card blue" style="margin-top:0.3em">
+        <p><strong style="color:var(--blue)">Generalisation:</strong> bucket sort is a distribution-based framework. The choice of bucket count, mapping function, and sub-sort is configurable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 15 — Stability, Adaptivity, In-Place
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">15</span>
+    <h2>Stability, Adaptivity &amp; In-Place</h2>
+  </div>
+  <div class="cols cols-3" style="margin-top:0.5em">
+    <div class="card amber">
+      <h3>Stability</h3>
+      <p>A sort is <strong>stable</strong> if elements with equal keys retain their original relative order.</p>
+      <ul>
+        <li>Sort students by name, then stable-sort by grade &rarr; students with the same grade are still alphabetical</li>
+        <li>Required for multi-key sorting and radix sort correctness</li>
+      </ul>
+      <p style="margin-top:0.4em;font-size:0.55em"><span class="g">Stable:</span> Insertion, Merge, Counting, Radix, Bucket, Bubble, Timsort</p>
+      <p style="font-size:0.55em"><span class="r">Unstable:</span> Quick, Heap, Selection, Introsort</p>
+    </div>
+    <div class="card green">
+      <h3>Adaptivity</h3>
+      <p>An <strong>adaptive</strong> sort exploits existing order in the input to run faster.</p>
+      <ul>
+        <li>Insertion sort: <code>O(n)</code> on sorted data vs <code>O(n&sup2;)</code> on random</li>
+        <li>Timsort detects and merges pre-sorted "runs"</li>
+        <li>Non-adaptive sorts (heap, merge) always do the same work</li>
+      </ul>
+      <p style="margin-top:0.4em;font-size:0.55em"><span class="g">Adaptive:</span> Insertion, Bubble, Timsort, pdqsort</p>
+      <p style="font-size:0.55em"><span class="r">Non-adaptive:</span> Merge, Heap, Selection, Counting</p>
+    </div>
+    <div class="card purple">
+      <h3>In-Place</h3>
+      <p>An <strong>in-place</strong> sort uses only <code>O(1)</code> or <code>O(log n)</code> extra memory beyond the input array.</p>
+      <ul>
+        <li>Swap-based sorts (bubble, selection, insertion, quick, heap) are in-place</li>
+        <li>Merge sort requires <code>O(n)</code> auxiliary space</li>
+        <li>Counting / radix / bucket need <code>O(n + k)</code></li>
+      </ul>
+      <p style="margin-top:0.4em;font-size:0.55em"><span class="g">In-place:</span> Bubble, Selection, Insertion, Quick, Heap</p>
+      <p style="font-size:0.55em"><span class="r">Not in-place:</span> Merge, Counting, Radix, Bucket</p>
+    </div>
+  </div>
+  <div class="card blue" style="margin-top:0.5em">
+    <p><strong style="color:var(--blue)">Trade-off triangle:</strong> no comparison sort achieves all three of <code>O(n log n)</code> worst case + stable + in-place simultaneously. Merge sort sacrifices in-place. Heap sort sacrifices stability. Quick sort sacrifices worst-case guarantee.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 16 — Comparison Table
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">16</span>
+    <h2>Complexity Comparison Table</h2>
+  </div>
+  <table>
+    <tr>
+      <th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th><th>Stable</th><th>In-Place</th>
+    </tr>
+    <tr>
+      <td><strong>Bubble Sort</strong></td><td><code>O(n)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(1)</code></td><td>Yes</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Selection Sort</strong></td><td><code>O(n&sup2;)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(1)</code></td><td>No</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Insertion Sort</strong></td><td><code>O(n)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(1)</code></td><td>Yes</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Merge Sort</strong></td><td><code>O(n log n)</code></td><td><code>O(n log n)</code></td><td><code>O(n log n)</code></td><td><code>O(n)</code></td><td>Yes</td><td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Quick Sort</strong></td><td><code>O(n log n)</code></td><td><code>O(n log n)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(log n)</code></td><td>No</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Heap Sort</strong></td><td><code>O(n log n)</code></td><td><code>O(n log n)</code></td><td><code>O(n log n)</code></td><td><code>O(1)</code></td><td>No</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Counting Sort</strong></td><td colspan="3"><code>O(n + k)</code></td><td><code>O(n + k)</code></td><td>Yes</td><td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Radix Sort</strong></td><td colspan="3"><code>O(d(n + k))</code></td><td><code>O(n + k)</code></td><td>Yes</td><td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Bucket Sort</strong></td><td><code>O(n + k)</code></td><td><code>O(n + k)</code></td><td><code>O(n&sup2;)</code></td><td><code>O(n + k)</code></td><td>Yes*</td><td>No</td>
+    </tr>
+  </table>
+  <div class="card amber" style="margin-top:0.4em;font-size:0.6em">
+    <p><code>n</code> = number of elements &nbsp;&middot;&nbsp; <code>k</code> = range of key values &nbsp;&middot;&nbsp; <code>d</code> = number of digits &nbsp;&middot;&nbsp; *if sub-sort is stable</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 17 — When to Use Which Sort
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">17</span>
+    <h2>When to Use Which Sort</h2>
+  </div>
+  <table>
+    <tr><th>Scenario</th><th>Best choice</th><th>Why</th></tr>
+    <tr>
+      <td>Small array (<code>n &le; 32</code>)</td>
+      <td><strong>Insertion sort</strong></td>
+      <td>Low overhead, excellent cache locality, adaptive</td>
+    </tr>
+    <tr>
+      <td>General-purpose, stability required</td>
+      <td><strong>Merge sort / Timsort</strong></td>
+      <td>Guaranteed <code>O(n log n)</code>, stable</td>
+    </tr>
+    <tr>
+      <td>General-purpose, speed priority</td>
+      <td><strong>Quick sort / Introsort</strong></td>
+      <td>Fastest average case, in-place</td>
+    </tr>
+    <tr>
+      <td>Worst-case guarantee + minimal memory</td>
+      <td><strong>Heap sort</strong></td>
+      <td><code>O(n log n)</code> guaranteed, <code>O(1)</code> space</td>
+    </tr>
+    <tr>
+      <td>Integers in small range</td>
+      <td><strong>Counting sort</strong></td>
+      <td>Linear time when <code>k = O(n)</code></td>
+    </tr>
+    <tr>
+      <td>Fixed-width integers or strings</td>
+      <td><strong>Radix sort</strong></td>
+      <td>Linear time, stable</td>
+    </tr>
+    <tr>
+      <td>Uniformly distributed floats</td>
+      <td><strong>Bucket sort</strong></td>
+      <td>Expected linear time</td>
+    </tr>
+    <tr>
+      <td>Data too large for memory</td>
+      <td><strong>External merge sort</strong></td>
+      <td>Merge sorted runs from disk</td>
+    </tr>
+    <tr>
+      <td>Nearly sorted data</td>
+      <td><strong>Insertion sort / Timsort</strong></td>
+      <td>Adaptive &mdash; exploits existing order</td>
+    </tr>
+  </table>
+  <div class="card green" style="margin-top:0.4em">
+    <p><strong style="color:var(--green)">Rule of thumb:</strong> use your language's built-in sort (Timsort in Python/Java, Introsort in C++). Only reach for a specialised algorithm when profiling reveals a bottleneck.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 18 — Real-World Implementations
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">18</span>
+    <h2>Real-World Implementations</h2>
+  </div>
+  <div class="cols cols-3" style="margin-top:0.5em">
+    <div class="card amber">
+      <h3>Timsort</h3>
+      <p>Hybrid merge + insertion sort. Designed by Tim Peters for Python (2002). Now used in Python, Java, Android, Swift, Rust (stable sort).</p>
+      <ul>
+        <li>Detects natural "runs" (pre-sorted sequences)</li>
+        <li>Extends short runs with insertion sort (minrun ~32&ndash;64)</li>
+        <li>Merges runs using a stack-based strategy with galloping mode</li>
+        <li><code>O(n)</code> on already-sorted data</li>
+        <li><code>O(n log n)</code> worst case, stable</li>
+        <li><code>O(n)</code> auxiliary space</li>
+      </ul>
+    </div>
+    <div class="card green">
+      <h3>Introsort</h3>
+      <p>Hybrid quick + heap + insertion sort. Default in C++ <code>std::sort</code>, .NET, Go.</p>
+      <ul>
+        <li>Starts with quicksort (fast average case)</li>
+        <li>Monitors recursion depth &mdash; if it exceeds <code>2 log n</code>, switches to heapsort</li>
+        <li>Falls back to insertion sort for small partitions</li>
+        <li><code>O(n log n)</code> guaranteed worst case</li>
+        <li>In-place, <strong>not</strong> stable</li>
+        <li>Best of all three algorithms' strengths</li>
+      </ul>
+    </div>
+    <div class="card purple">
+      <h3>pdqsort</h3>
+      <p>Pattern-defeating quicksort. Used in Rust (unstable sort), Boost, Go 1.19+.</p>
+      <ul>
+        <li>Builds on Introsort with better pivot selection</li>
+        <li>Detects and handles adversarial patterns</li>
+        <li>Uses block partitioning for better branch prediction</li>
+        <li>Adaptive: <code>O(n)</code> on sorted, reverse-sorted, and many repeated elements</li>
+        <li><code>O(n log n)</code> worst case</li>
+        <li>Fastest known general-purpose unstable sort</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card blue" style="margin-top:0.5em">
+    <p><strong style="color:var(--blue)">Language defaults:</strong>
+      <span class="pill amber">Python &rarr; Timsort</span>
+      <span class="pill green">C++ &rarr; Introsort</span>
+      <span class="pill purple">Rust &rarr; Timsort (stable) / pdqsort (unstable)</span>
+      <span class="pill amber">Java &rarr; Timsort (objects) / Dual-Pivot QS (primitives)</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 19 — Parallel & External Sorting
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">19</span>
+    <h2>Parallel &amp; External Sorting</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <h3>Parallel sorting</h3>
+      <p>Modern hardware has many cores. Sorting algorithms can exploit parallelism to achieve significant speedups.</p>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Parallel merge</span><span style="color:var(--text)">Divide array into chunks, sort each chunk on a separate thread, then merge. <code>O(n log n / p)</code> with <code>p</code> processors.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Bitonic sort</span><span style="color:var(--text)">Oblivious sorting network. Fixed comparison pattern regardless of data &mdash; ideal for GPUs and SIMD.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Sample sort</span><span style="color:var(--text)">Generalisation of quicksort to <code>p</code> partitions. Sample pivots to ensure balanced partitions across processors.</span></div>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">In practice:</strong> <code>std::sort</code> with parallel execution policies (C++17), Java's <code>Arrays.parallelSort</code>, and Python's <code>concurrent.futures</code> for chunk-based parallel sorts.</p>
+      </div>
+    </div>
+    <div>
+      <h3>External sorting</h3>
+      <p>When data exceeds available RAM, we sort in chunks that fit in memory, write sorted "runs" to disk, then merge the runs.</p>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Phase 1: Sort</span><span style="color:var(--text)">Read <code>M</code> bytes into RAM, sort with an efficient in-memory algorithm, write sorted run to disk.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Phase 2: Merge</span><span style="color:var(--text)">K-way merge of sorted runs using a min-heap. Each run contributes one buffer page.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">I/O complexity</span><span style="color:var(--text)"><code>O(N/B &middot; log<sub>M/B</sub>(N/B))</code> disk I/Os, where <code>B</code> = block size, <code>M</code> = memory.</span></div>
+      <div class="card amber" style="margin-top:0.5em">
+        <p><strong style="color:var(--amber)">Used everywhere:</strong> database <code>ORDER BY</code> on large tables, <code>sort</code> Unix command on huge files, MapReduce shuffle phase, and any data pipeline sorting terabytes.</p>
+      </div>
+      <div class="card purple" style="margin-top:0.3em">
+        <p><strong style="color:var(--purple)">Replacement selection:</strong> a tournament-tree technique that produces runs of average length <code>2M</code> &mdash; reducing the number of merge passes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 20 — Practical Considerations
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">20</span>
+    <h2>Practical Considerations</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <h3>Cache and memory effects</h3>
+      <ul>
+        <li>Asymptotic complexity ignores constant factors and cache behaviour</li>
+        <li>Quicksort's sequential access pattern is <strong>cache-friendly</strong> &mdash; data in the same partition stays in L1/L2 cache</li>
+        <li>Heapsort's parent/child jumps cause frequent <strong>cache misses</strong></li>
+        <li>Merge sort's auxiliary array doubles memory footprint &mdash; relevant when <code>n</code> is large</li>
+        <li>For linked lists, merge sort is ideal (no random access needed, <code>O(1)</code> extra space)</li>
+      </ul>
+      <div class="card amber" style="margin-top:0.5em">
+        <p><strong style="color:var(--amber)">Branch prediction:</strong> pdqsort uses branchless comparison and block partitioning to minimise branch mispredictions &mdash; a major source of overhead in quicksort.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Language and API considerations</h3>
+      <ul>
+        <li><code>Python list.sort()</code> is Timsort &mdash; stable, <code>O(n log n)</code>. Use <code>key=</code> parameter for custom comparisons, not <code>cmp</code></li>
+        <li><code>C++ std::sort</code> is Introsort &mdash; unstable. Use <code>std::stable_sort</code> when stability matters</li>
+        <li><code>Java Arrays.sort</code> uses Timsort for objects (stable) and dual-pivot quicksort for primitives (faster, no stability needed)</li>
+        <li>Always prefer built-in sorts over hand-rolled implementations &mdash; they are tuned, tested, and optimised for the runtime</li>
+      </ul>
+      <div class="card green" style="margin-top:0.5em">
+        <p><strong style="color:var(--green)">Comparison function contract:</strong> your comparator must define a strict weak ordering (irreflexive, asymmetric, transitive). Violating this causes undefined behaviour in C++ and subtle bugs everywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  SLIDE 21 — Summary & Further Reading
+══════════════════════════════════════════════════════════════════ -->
+<section data-background-color="#0a0a0f">
+  <div class="slide-hdr">
+    <span class="tag">21</span>
+    <h2>Summary &amp; Further Reading</h2>
+  </div>
+  <div class="cols cols-2">
+    <div>
+      <h3>Key takeaways</h3>
+      <ul>
+        <li>Comparison sorts have a fundamental lower bound of <code>&Omega;(n log n)</code> &mdash; merge sort and heap sort are asymptotically optimal</li>
+        <li>Non-comparison sorts (counting, radix, bucket) bypass this limit by exploiting key structure</li>
+        <li>No single sort wins on every metric &mdash; stability, memory, adaptivity, and cache behaviour all matter</li>
+        <li>Insertion sort is the best quadratic sort and is used as a sub-routine in all major hybrid algorithms</li>
+        <li>Real-world sorts are hybrids: Timsort (merge + insertion), Introsort (quick + heap + insertion), pdqsort (quicksort + heap + insertion + pattern detection)</li>
+        <li>Use your language's built-in sort unless profiling reveals a specific bottleneck</li>
+        <li>External merge sort handles data larger than memory</li>
+        <li>Understanding sorting deeply improves your ability to reason about algorithmic trade-offs in general</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recommended reading</h3>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">CLRS</span><span style="color:var(--text)"><em>Introduction to Algorithms</em> &mdash; the canonical reference for sorting algorithms and analysis</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Sedgewick</span><span style="color:var(--text)"><em>Algorithms</em>, 4th ed. &mdash; excellent treatment of quicksort, mergesort, and practical implementations</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Knuth</span><span style="color:var(--text)"><em>The Art of Computer Programming, Vol. 3: Sorting and Searching</em> &mdash; exhaustive mathematical analysis</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Peters (2002)</span><span style="color:var(--text)"><a href="https://github.com/python/cpython/blob/main/Objects/listsort.txt">listsort.txt</a> &mdash; Tim Peters' original Timsort description</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Musser (1997)</span><span style="color:var(--text)"><em>Introspective Sorting and Selection Algorithms</em> &mdash; the Introsort paper</span></div>
+      <div class="card blue" style="margin-top:0.8em">
+        <p>
+        <span class="pill amber">Timsort</span>
+        <span class="pill green">Introsort</span>
+        <span class="pill purple">pdqsort</span>
+        <span class="pill amber">Merge Sort</span>
+        <span class="pill green">Quick Sort</span>
+        <span class="pill purple">Radix Sort</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  transition: 'fade',
+  transitionSpeed: 'fast',
+  controls: true,
+  progress: true,
+  center: false,
+  width: 1100,
+  height: 900,
+  margin: 0.01,
+  plugins: [RevealHighlight],
+  highlight: { theme: 'monokai' }
+});
+</script>
+<script>
+(function(){
+  var h = Reveal.getConfig().height || 900;
+  var m = Reveal.getConfig().margin || 0.02;
+  var maxH = Math.floor(h * (1 - 2 * m)) + 'px';
+  function fixSlides(){
+    document.querySelectorAll('.reveal .slides>section,.reveal .slides>section>section').forEach(function(s){
+      s.style.display = 'block';
+      s.style.maxHeight = maxH;
+    });
+  }
+  Reveal.on('ready', fixSlides);
+  Reveal.on('slidechanged', fixSlides);
+})();
+</script>
+</body>
+</html>
