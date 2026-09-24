@@ -6,7 +6,7 @@
   <title>Sorting Algorithms</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,17 +14,17 @@
 
   <style>
   :root {
-    --amber:  #f5a623;
-    --green:  #4ecb8d;
-    --purple: #a78bfa;
-    --blue:   #60a5fa;
-    --red:    #f87171;
-    --bg:     #0a0a0f;
-    --bg2:    #10101a;
-    --bg3:    #181824;
-    --border: #2a2a3a;
-    --text:   #e8e8f0;
-    --muted:  #8888a8;
+    --amber:  #bf7d10;
+    --green:  #1c815a;
+    --purple: #6435bc;
+    --blue:   #2b3dc5;
+    --red:    #db3a30;
+    --bg:     #fafaf8;
+    --bg2:    #f1f1ee;
+    --bg3:    #eaeae6;
+    --border: #d1d1cb;
+    --text:   #161616;
+    --muted:  #6a6a63;
   }
 
   .reveal-viewport { background: var(--bg); }
@@ -40,7 +40,7 @@
   .reveal code { font-family: 'JetBrains Mono', monospace; font-size: .72em; }
   .reveal pre  { box-shadow: none; background: var(--bg3); border: 1px solid var(--border);
                  border-radius: 6px; padding: .3em .5em; margin: .25em 0; }
-  .reveal pre code { font-size: .52em; line-height: 1.35; background: transparent; color: #cdd6f4; }
+  .reveal pre code { font-size: .52em; line-height: 1.35; background: transparent; color: #242422; }
 
   /* ── slide chrome ── */
   .slide-hdr {
@@ -75,16 +75,16 @@
   .card.blue  { border-left: 3px solid var(--blue); }
   .card.red   { border-left: 3px solid var(--red); }
   .card h3 { font-size: .64em; margin: 0 0 .12em; }
-  .card p  { font-size: .52em; margin: 0; color: #b8b8d0; }
+  .card p  { font-size: .52em; margin: 0; color: #3d3d39; }
   .card ul { margin: 0; padding-left: 1em; }
-  .card li { font-size: .52em; color: #b8b8d0; margin-bottom: .02em; }
+  .card li { font-size: .52em; color: #3d3d39; margin-bottom: .02em; }
 
   /* ── table ── */
   .reveal table { width: 100%; border-collapse: collapse; font-size: .5em; }
   .reveal table th { background: var(--bg3); color: var(--amber); font-weight: 600;
                      padding: .2em .4em; border: 1px solid var(--border); text-align: left; }
-  .reveal table td { padding: .18em .4em; border: 1px solid var(--border); color: #ccc; }
-  .reveal table tr:nth-child(even) td { background: #0e0e18; }
+  .reveal table td { padding: .18em .4em; border: 1px solid var(--border); color: #2d2d2b; }
+  .reveal table tr:nth-child(even) td { background: #f3f3f1; }
 
   /* ── accent spans ── */
   .a  { color: var(--amber); font-weight: 600; }
@@ -127,8 +127,8 @@
     padding: .2em .55em; border-radius: 5px; font-size: .9em;
     background: var(--bg3); border: 1px solid var(--border); color: var(--text);
   }
-  .ss-node.active { background: #1a2a1a; border-color: var(--green); color: var(--green); }
-  .ss-node.done   { background: #1a1a2a; border-color: var(--purple); color: var(--purple); }
+  .ss-node.active { background: #d3e1d5; border-color: var(--green); color: var(--green); }
+  .ss-node.done   { background: #e6e6e2; border-color: var(--purple); color: var(--purple); }
   .ss-arrow { color: var(--amber); }
   .ss-label { font-size: .8em; color: var(--muted); margin-left: .3em; }
 
@@ -136,6 +136,7 @@
   .reveal ul, .reveal ol { margin: .15em 0 .15em 1em; }
 .reveal .slides > section { display: flex !important; flex-direction: column !important; overflow-y: auto !important; align-items: stretch !important; justify-content: flex-start !important; }
 </style>
+<style>.reveal .slide-number{background-color:transparent}</style>
 </head>
 <body>
 <div class="reveal">
@@ -144,7 +145,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 01 — Title
 ══════════════════════════════════════════════════════════════════ -->
-<section class="title-slide" data-background-color="#0a0a0f">
+<section class="title-slide" data-background-color="#fafaf8">
   <div style="font-family:'JetBrains Mono',monospace; font-size:.5em; color:var(--muted); margin-bottom:.4em; letter-spacing:.1em;">COMPUTER SCIENCE FUNDAMENTALS SERIES</div>
   <h1>Sorting<br>Algorithms</h1>
   <div class="subtitle">
@@ -160,7 +161,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 02 — Why Study Sorting?
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">02</span>
     <h2>Why Study Sorting?</h2>
@@ -208,7 +209,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 03 — Sorting Taxonomy
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">03</span>
     <h2>Sorting Taxonomy</h2>
@@ -253,7 +254,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 04 — Bubble Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">04</span>
     <h2>Bubble Sort</h2>
@@ -297,7 +298,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 05 — Selection Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">05</span>
     <h2>Selection Sort</h2>
@@ -339,7 +340,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 06 — Insertion Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">06</span>
     <h2>Insertion Sort</h2>
@@ -381,7 +382,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 07 — Merge Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">07</span>
     <h2>Merge Sort</h2>
@@ -434,7 +435,7 @@ def merge(L, R):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 08 — Quick Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">08</span>
     <h2>Quick Sort</h2>
@@ -486,7 +487,7 @@ def partition(arr, lo, hi):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 09 — Heap Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">09</span>
     <h2>Heap Sort</h2>
@@ -540,7 +541,7 @@ def heapify(arr, n, i):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 10 — Divide and Conquer Paradigm
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">10</span>
     <h2>The Divide-and-Conquer Paradigm</h2>
@@ -585,7 +586,7 @@ def heapify(arr, n, i):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 11 — Lower Bound for Comparison Sorts
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">11</span>
     <h2>Lower Bound for Comparison Sorts</h2>
@@ -610,52 +611,52 @@ def heapify(arr, n, i):
       <div style="background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:.5em;">
         <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
           <!-- Root: a<b? -->
-          <rect x="130" y="5" width="80" height="24" rx="4" fill="#2e1e00" stroke="#f5a623"/>
-          <text x="170" y="21" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f5a623">a &lt; b ?</text>
+          <rect x="130" y="5" width="80" height="24" rx="4" fill="#f8e2c5" stroke="#bf7d10"/>
+          <text x="170" y="21" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#bf7d10">a &lt; b ?</text>
           <!-- Left: a<c? -->
-          <line x1="150" y1="29" x2="80" y2="55" stroke="#4ecb8d" stroke-width="1"/>
-          <text x="108" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#4ecb8d">yes</text>
-          <rect x="40" y="55" width="80" height="24" rx="4" fill="#001e16" stroke="#4ecb8d"/>
-          <text x="80" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#4ecb8d">a &lt; c ?</text>
+          <line x1="150" y1="29" x2="80" y2="55" stroke="#1c815a" stroke-width="1"/>
+          <text x="108" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#1c815a">yes</text>
+          <rect x="40" y="55" width="80" height="24" rx="4" fill="#dbf1e8" stroke="#1c815a"/>
+          <text x="80" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#1c815a">a &lt; c ?</text>
           <!-- Right: b<c? -->
-          <line x1="190" y1="29" x2="260" y2="55" stroke="#f87171" stroke-width="1"/>
-          <text x="230" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#f87171">no</text>
-          <rect x="220" y="55" width="80" height="24" rx="4" fill="#1a0e0e" stroke="#f87171"/>
-          <text x="260" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f87171">b &lt; c ?</text>
+          <line x1="190" y1="29" x2="260" y2="55" stroke="#db3a30" stroke-width="1"/>
+          <text x="230" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#db3a30">no</text>
+          <rect x="220" y="55" width="80" height="24" rx="4" fill="#f3efec" stroke="#db3a30"/>
+          <text x="260" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#db3a30">b &lt; c ?</text>
           <!-- Left-Left: a,b,c -->
-          <line x1="60" y1="79" x2="30" y2="105" stroke="#4ecb8d" stroke-width="1"/>
-          <rect x="5" y="105" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
-          <text x="30" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">a,b,c</text>
+          <line x1="60" y1="79" x2="30" y2="105" stroke="#1c815a" stroke-width="1"/>
+          <rect x="5" y="105" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
+          <text x="30" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">a,b,c</text>
           <!-- Left-Right: b<c? -->
-          <line x1="100" y1="79" x2="120" y2="105" stroke="#f87171" stroke-width="1"/>
-          <rect x="90" y="105" width="64" height="24" rx="4" fill="#2e1e00" stroke="#f5a623"/>
-          <text x="122" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f5a623">b &lt; c ?</text>
+          <line x1="100" y1="79" x2="120" y2="105" stroke="#db3a30" stroke-width="1"/>
+          <rect x="90" y="105" width="64" height="24" rx="4" fill="#f8e2c5" stroke="#bf7d10"/>
+          <text x="122" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#bf7d10">b &lt; c ?</text>
           <!-- Left-Right-Left: a,c,b -->
-          <line x1="105" y1="129" x2="80" y2="155" stroke="#4ecb8d" stroke-width="1"/>
-          <rect x="55" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
-          <text x="80" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">a,c,b</text>
+          <line x1="105" y1="129" x2="80" y2="155" stroke="#1c815a" stroke-width="1"/>
+          <rect x="55" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
+          <text x="80" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">a,c,b</text>
           <!-- Left-Right-Right: c,a,b -->
-          <line x1="138" y1="129" x2="155" y2="155" stroke="#f87171" stroke-width="1"/>
-          <rect x="130" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
-          <text x="155" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">c,a,b</text>
+          <line x1="138" y1="129" x2="155" y2="155" stroke="#db3a30" stroke-width="1"/>
+          <rect x="130" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
+          <text x="155" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">c,a,b</text>
           <!-- Right-Left: b,a,c -->
-          <line x1="240" y1="79" x2="215" y2="105" stroke="#4ecb8d" stroke-width="1"/>
-          <rect x="190" y="105" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
-          <text x="215" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">b,a,c</text>
+          <line x1="240" y1="79" x2="215" y2="105" stroke="#1c815a" stroke-width="1"/>
+          <rect x="190" y="105" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
+          <text x="215" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">b,a,c</text>
           <!-- Right-Right: a<c? -->
-          <line x1="280" y1="79" x2="295" y2="105" stroke="#f87171" stroke-width="1"/>
-          <rect x="265" y="105" width="64" height="24" rx="4" fill="#2e1e00" stroke="#f5a623"/>
-          <text x="297" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#f5a623">a &lt; c ?</text>
+          <line x1="280" y1="79" x2="295" y2="105" stroke="#db3a30" stroke-width="1"/>
+          <rect x="265" y="105" width="64" height="24" rx="4" fill="#f8e2c5" stroke="#bf7d10"/>
+          <text x="297" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#bf7d10">a &lt; c ?</text>
           <!-- Right-Right-Left: b,c,a -->
-          <line x1="280" y1="129" x2="260" y2="155" stroke="#4ecb8d" stroke-width="1"/>
-          <rect x="235" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
-          <text x="260" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">b,c,a</text>
+          <line x1="280" y1="129" x2="260" y2="155" stroke="#1c815a" stroke-width="1"/>
+          <rect x="235" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
+          <text x="260" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">b,c,a</text>
           <!-- Right-Right-Right: c,b,a -->
-          <line x1="312" y1="129" x2="320" y2="155" stroke="#f87171" stroke-width="1"/>
-          <rect x="295" y="155" width="50" height="20" rx="3" fill="#110e1f" stroke="#a78bfa"/>
-          <text x="320" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#a78bfa">c,b,a</text>
+          <line x1="312" y1="129" x2="320" y2="155" stroke="#db3a30" stroke-width="1"/>
+          <rect x="295" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
+          <text x="320" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">c,b,a</text>
           <!-- Legend -->
-          <text x="170" y="200" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#8888a8">3! = 6 leaves &rarr; height &ge; ceil(log&#8322; 6) = 3 comparisons</text>
+          <text x="170" y="200" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#6a6a63">3! = 6 leaves &rarr; height &ge; ceil(log&#8322; 6) = 3 comparisons</text>
         </svg>
       </div>
       <div class="card amber" style="margin-top:0.3em">
@@ -668,7 +669,7 @@ def heapify(arr, n, i):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 12 — Counting Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">12</span>
     <h2>Counting Sort</h2>
@@ -717,7 +718,7 @@ def heapify(arr, n, i):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 13 — Radix Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">13</span>
     <h2>Radix Sort</h2>
@@ -772,7 +773,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 14 — Bucket Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">14</span>
     <h2>Bucket Sort</h2>
@@ -824,7 +825,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 15 — Stability, Adaptivity, In-Place
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">15</span>
     <h2>Stability, Adaptivity &amp; In-Place</h2>
@@ -871,7 +872,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 16 — Comparison Table
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">16</span>
     <h2>Complexity Comparison Table</h2>
@@ -916,7 +917,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 17 — When to Use Which Sort
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">17</span>
     <h2>When to Use Which Sort</h2>
@@ -977,7 +978,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 18 — Real-World Implementations
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">18</span>
     <h2>Real-World Implementations</h2>
@@ -1033,7 +1034,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 19 — Parallel & External Sorting
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">19</span>
     <h2>Parallel &amp; External Sorting</h2>
@@ -1068,7 +1069,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 20 — Practical Considerations
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">20</span>
     <h2>Practical Considerations</h2>
@@ -1105,7 +1106,7 @@ def counting_sort_by_digit(arr, exp):
 <!-- ═══════════════════════════════════════════════════════════════
   SLIDE 21 — Summary & Further Reading
 ══════════════════════════════════════════════════════════════════ -->
-<section data-background-color="#0a0a0f">
+<section data-background-color="#fafaf8">
   <div class="slide-hdr">
     <span class="tag">21</span>
     <h2>Summary &amp; Further Reading</h2>
