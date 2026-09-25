@@ -10,7 +10,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Azeret+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
   <style>
   :root {
@@ -30,14 +30,14 @@
   .reveal-viewport { background: var(--bg); }
   .reveal .slides section { background: transparent; }
 
-  .reveal { font-family: 'DM Sans', sans-serif; color: var(--text); }
-  .reveal h1, .reveal h2, .reveal h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+  .reveal { font-family: 'Schibsted Grotesk', sans-serif; color: var(--text); }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: 'Schibsted Grotesk', serif; font-weight: 700; }
   .reveal h1 { font-size: 1.6em; color: var(--amber); line-height: 1.1; }
   .reveal h2 { font-size: 1.1em; color: var(--amber); margin-bottom: .2em; }
   .reveal h3 { font-size: .78em; color: var(--green); margin-bottom: .15em; }
   .reveal p  { font-size: .56em; line-height: 1.45; color: var(--text); }
   .reveal li { font-size: .54em; line-height: 1.45; margin-bottom: .1em; }
-  .reveal code { font-family: 'JetBrains Mono', monospace; font-size: .72em; }
+  .reveal code { font-family: 'Azeret Mono', monospace; font-size: .72em; }
   .reveal pre  { box-shadow: none; background: var(--bg3); border: 1px solid var(--border);
                  border-radius: 6px; padding: .3em .5em; margin: .25em 0; }
   .reveal pre code { font-size: .52em; line-height: 1.35; background: transparent; color: #242422; }
@@ -49,7 +49,7 @@
     padding-bottom: .2em; margin-bottom: .3em;
   }
   .slide-hdr .tag {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Azeret Mono', monospace;
     font-size: .42em; font-weight: 500;
     color: var(--bg); background: var(--amber);
     padding: .1em .4em; border-radius: 3px;
@@ -92,14 +92,14 @@
   .p  { color: var(--purple); font-weight: 600; }
   .b  { color: var(--blue); font-weight: 600; }
   .r  { color: var(--red); font-weight: 600; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
+  .mono { font-family: 'Azeret Mono', monospace; }
 
   /* ── SVG graph diagrams ── */
   svg.diagram { display: block; margin: 0 auto; overflow: visible; }
 
   /* ── pill badges ── */
   .pill {
-    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    display: inline-block; font-family: 'Azeret Mono', monospace;
     font-size: .44em; padding: .08em .4em; border-radius: 99px;
     border: 1px solid; margin: 0 .08em;
   }
@@ -113,15 +113,15 @@
   /* title slide special */
   .title-slide h1 { font-size: 1.8em; }
   .title-slide .subtitle {
-    font-size: .7em; color: var(--green); font-family: 'DM Sans', sans-serif;
+    font-size: .7em; color: var(--green); font-family: 'Schibsted Grotesk', sans-serif;
     font-weight: 300; letter-spacing: .04em; margin: .3em 0 .6em;
   }
-  .title-slide .meta { font-size: .48em; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .title-slide .meta { font-size: .48em; color: var(--muted); font-family: 'Azeret Mono', monospace; }
 
   /* ── super-step animator ── */
   .ss-row {
     display: flex; gap: .25em; align-items: center;
-    margin: .1em 0; font-size: .55em; font-family: 'JetBrains Mono', monospace;
+    margin: .1em 0; font-size: .55em; font-family: 'Azeret Mono', monospace;
   }
   .ss-node {
     padding: .2em .55em; border-radius: 5px; font-size: .9em;
@@ -146,7 +146,7 @@
   SLIDE 01 — Title
 ══════════════════════════════════════════════════════════════════ -->
 <section class="title-slide" data-background-color="#fafaf8">
-  <div style="font-family:'JetBrains Mono',monospace; font-size:.5em; color:var(--muted); margin-bottom:.4em; letter-spacing:.1em;">COMPUTER SCIENCE FUNDAMENTALS SERIES</div>
+  <div style="font-family:'Azeret Mono',monospace; font-size:.5em; color:var(--muted); margin-bottom:.4em; letter-spacing:.1em;">COMPUTER SCIENCE FUNDAMENTALS SERIES</div>
   <h1>Sorting<br>Algorithms</h1>
   <div class="subtitle">
     Comparison sorts &middot; Non-comparison sorts &middot; Complexity analysis &middot;<br>
@@ -182,23 +182,23 @@
       <h3>What we will cover</h3>
       <div style="display:flex; flex-direction:column; gap:.3em; margin-top:0.3em">
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">1</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">1</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Comparison-based sorts</strong> &mdash; Bubble, Selection, Insertion, Merge, Quick, Heap</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">2</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">2</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Non-comparison sorts</strong> &mdash; Counting, Radix, Bucket</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--purple)">3</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--purple)">3</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Complexity analysis</strong> &mdash; time, space, best/worst/average cases</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">4</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">4</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Properties</strong> &mdash; stability, adaptivity, in-place</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">5</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">5</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Real-world implementations</strong> &mdash; Timsort, Introsort, pdqsort</span>
         </div>
       </div>
@@ -551,15 +551,15 @@ def heapify(arr, n, i):
       <h3>Three steps</h3>
       <div style="display:flex; flex-direction:column; gap:.3em; margin-top:0.3em">
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">1</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--amber)">1</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Divide</strong> &mdash; split the problem into smaller sub-problems of the same type</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">2</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--green)">2</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Conquer</strong> &mdash; recursively solve each sub-problem (base case: trivially sorted)</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:.5em; background:var(--bg3); border-radius:6px; padding:.35em .6em; font-size:.52em; border:1px solid var(--border);">
-          <span style="font-family:'Playfair Display',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--purple)">3</span>
+          <span style="font-family:'Schibsted Grotesk',serif; font-size:1.4em; font-weight:700; min-width:0.9em; line-height:1; color:var(--purple)">3</span>
           <span style="color:var(--text); line-height:1.5"><strong style="color:var(--amber)">Combine</strong> &mdash; merge the solutions of sub-problems into the overall solution</span>
         </div>
       </div>
@@ -612,51 +612,51 @@ def heapify(arr, n, i):
         <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
           <!-- Root: a<b? -->
           <rect x="130" y="5" width="80" height="24" rx="4" fill="#f8e2c5" stroke="#bf7d10"/>
-          <text x="170" y="21" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#bf7d10">a &lt; b ?</text>
+          <text x="170" y="21" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="9" fill="#bf7d10">a &lt; b ?</text>
           <!-- Left: a<c? -->
           <line x1="150" y1="29" x2="80" y2="55" stroke="#1c815a" stroke-width="1"/>
-          <text x="108" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#1c815a">yes</text>
+          <text x="108" y="42" font-family="'Schibsted Grotesk',sans-serif" font-size="7" fill="#1c815a">yes</text>
           <rect x="40" y="55" width="80" height="24" rx="4" fill="#dbf1e8" stroke="#1c815a"/>
-          <text x="80" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#1c815a">a &lt; c ?</text>
+          <text x="80" y="71" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="9" fill="#1c815a">a &lt; c ?</text>
           <!-- Right: b<c? -->
           <line x1="190" y1="29" x2="260" y2="55" stroke="#db3a30" stroke-width="1"/>
-          <text x="230" y="42" font-family="'DM Sans',sans-serif" font-size="7" fill="#db3a30">no</text>
+          <text x="230" y="42" font-family="'Schibsted Grotesk',sans-serif" font-size="7" fill="#db3a30">no</text>
           <rect x="220" y="55" width="80" height="24" rx="4" fill="#f3efec" stroke="#db3a30"/>
-          <text x="260" y="71" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#db3a30">b &lt; c ?</text>
+          <text x="260" y="71" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="9" fill="#db3a30">b &lt; c ?</text>
           <!-- Left-Left: a,b,c -->
           <line x1="60" y1="79" x2="30" y2="105" stroke="#1c815a" stroke-width="1"/>
           <rect x="5" y="105" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
-          <text x="30" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">a,b,c</text>
+          <text x="30" y="118" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="8" fill="#6435bc">a,b,c</text>
           <!-- Left-Right: b<c? -->
           <line x1="100" y1="79" x2="120" y2="105" stroke="#db3a30" stroke-width="1"/>
           <rect x="90" y="105" width="64" height="24" rx="4" fill="#f8e2c5" stroke="#bf7d10"/>
-          <text x="122" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#bf7d10">b &lt; c ?</text>
+          <text x="122" y="121" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="9" fill="#bf7d10">b &lt; c ?</text>
           <!-- Left-Right-Left: a,c,b -->
           <line x1="105" y1="129" x2="80" y2="155" stroke="#1c815a" stroke-width="1"/>
           <rect x="55" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
-          <text x="80" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">a,c,b</text>
+          <text x="80" y="168" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="8" fill="#6435bc">a,c,b</text>
           <!-- Left-Right-Right: c,a,b -->
           <line x1="138" y1="129" x2="155" y2="155" stroke="#db3a30" stroke-width="1"/>
           <rect x="130" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
-          <text x="155" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">c,a,b</text>
+          <text x="155" y="168" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="8" fill="#6435bc">c,a,b</text>
           <!-- Right-Left: b,a,c -->
           <line x1="240" y1="79" x2="215" y2="105" stroke="#1c815a" stroke-width="1"/>
           <rect x="190" y="105" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
-          <text x="215" y="118" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">b,a,c</text>
+          <text x="215" y="118" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="8" fill="#6435bc">b,a,c</text>
           <!-- Right-Right: a<c? -->
           <line x1="280" y1="79" x2="295" y2="105" stroke="#db3a30" stroke-width="1"/>
           <rect x="265" y="105" width="64" height="24" rx="4" fill="#f8e2c5" stroke="#bf7d10"/>
-          <text x="297" y="121" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#bf7d10">a &lt; c ?</text>
+          <text x="297" y="121" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="9" fill="#bf7d10">a &lt; c ?</text>
           <!-- Right-Right-Left: b,c,a -->
           <line x1="280" y1="129" x2="260" y2="155" stroke="#1c815a" stroke-width="1"/>
           <rect x="235" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
-          <text x="260" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">b,c,a</text>
+          <text x="260" y="168" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="8" fill="#6435bc">b,c,a</text>
           <!-- Right-Right-Right: c,b,a -->
           <line x1="312" y1="129" x2="320" y2="155" stroke="#db3a30" stroke-width="1"/>
           <rect x="295" y="155" width="50" height="20" rx="3" fill="#f1f1ee" stroke="#6435bc"/>
-          <text x="320" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6435bc">c,b,a</text>
+          <text x="320" y="168" text-anchor="middle" font-family="'Azeret Mono',monospace" font-size="8" fill="#6435bc">c,b,a</text>
           <!-- Legend -->
-          <text x="170" y="200" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#6a6a63">3! = 6 leaves &rarr; height &ge; ceil(log&#8322; 6) = 3 comparisons</text>
+          <text x="170" y="200" text-anchor="middle" font-family="'Schibsted Grotesk',sans-serif" font-size="8" fill="#6a6a63">3! = 6 leaves &rarr; height &ge; ceil(log&#8322; 6) = 3 comparisons</text>
         </svg>
       </div>
       <div class="card amber" style="margin-top:0.3em">
@@ -1043,9 +1043,9 @@ def counting_sort_by_digit(arr, exp):
     <div>
       <h3>Parallel sorting</h3>
       <p>Modern hardware has many cores. Sorting algorithms can exploit parallelism to achieve significant speedups.</p>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Parallel merge</span><span style="color:var(--text)">Divide array into chunks, sort each chunk on a separate thread, then merge. <code>O(n log n / p)</code> with <code>p</code> processors.</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Bitonic sort</span><span style="color:var(--text)">Oblivious sorting network. Fixed comparison pattern regardless of data &mdash; ideal for GPUs and SIMD.</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Sample sort</span><span style="color:var(--text)">Generalisation of quicksort to <code>p</code> partitions. Sample pivots to ensure balanced partitions across processors.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Parallel merge</span><span style="color:var(--text)">Divide array into chunks, sort each chunk on a separate thread, then merge. <code>O(n log n / p)</code> with <code>p</code> processors.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Bitonic sort</span><span style="color:var(--text)">Oblivious sorting network. Fixed comparison pattern regardless of data &mdash; ideal for GPUs and SIMD.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Sample sort</span><span style="color:var(--text)">Generalisation of quicksort to <code>p</code> partitions. Sample pivots to ensure balanced partitions across processors.</span></div>
       <div class="card green" style="margin-top:0.5em">
         <p><strong style="color:var(--green)">In practice:</strong> <code>std::sort</code> with parallel execution policies (C++17), Java's <code>Arrays.parallelSort</code>, and Python's <code>concurrent.futures</code> for chunk-based parallel sorts.</p>
       </div>
@@ -1053,9 +1053,9 @@ def counting_sort_by_digit(arr, exp):
     <div>
       <h3>External sorting</h3>
       <p>When data exceeds available RAM, we sort in chunks that fit in memory, write sorted "runs" to disk, then merge the runs.</p>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Phase 1: Sort</span><span style="color:var(--text)">Read <code>M</code> bytes into RAM, sort with an efficient in-memory algorithm, write sorted run to disk.</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Phase 2: Merge</span><span style="color:var(--text)">K-way merge of sorted runs using a min-heap. Each run contributes one buffer page.</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">I/O complexity</span><span style="color:var(--text)"><code>O(N/B &middot; log<sub>M/B</sub>(N/B))</code> disk I/Os, where <code>B</code> = block size, <code>M</code> = memory.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Phase 1: Sort</span><span style="color:var(--text)">Read <code>M</code> bytes into RAM, sort with an efficient in-memory algorithm, write sorted run to disk.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Phase 2: Merge</span><span style="color:var(--text)">K-way merge of sorted runs using a min-heap. Each run contributes one buffer page.</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">I/O complexity</span><span style="color:var(--text)"><code>O(N/B &middot; log<sub>M/B</sub>(N/B))</code> disk I/Os, where <code>B</code> = block size, <code>M</code> = memory.</span></div>
       <div class="card amber" style="margin-top:0.5em">
         <p><strong style="color:var(--amber)">Used everywhere:</strong> database <code>ORDER BY</code> on large tables, <code>sort</code> Unix command on huge files, MapReduce shuffle phase, and any data pipeline sorting terabytes.</p>
       </div>
@@ -1127,11 +1127,11 @@ def counting_sort_by_digit(arr, exp):
     </div>
     <div>
       <h3>Recommended reading</h3>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">CLRS</span><span style="color:var(--text)"><em>Introduction to Algorithms</em> &mdash; the canonical reference for sorting algorithms and analysis</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Sedgewick</span><span style="color:var(--text)"><em>Algorithms</em>, 4th ed. &mdash; excellent treatment of quicksort, mergesort, and practical implementations</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Knuth</span><span style="color:var(--text)"><em>The Art of Computer Programming, Vol. 3: Sorting and Searching</em> &mdash; exhaustive mathematical analysis</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Peters (2002)</span><span style="color:var(--text)"><a href="https://github.com/python/cpython/blob/main/Objects/listsort.txt">listsort.txt</a> &mdash; Tim Peters' original Timsort description</span></div>
-      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'JetBrains Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Musser (1997)</span><span style="color:var(--text)"><em>Introspective Sorting and Selection Algorithms</em> &mdash; the Introsort paper</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.2em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">CLRS</span><span style="color:var(--text)"><em>Introduction to Algorithms</em> &mdash; the canonical reference for sorting algorithms and analysis</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Sedgewick</span><span style="color:var(--text)"><em>Algorithms</em>, 4th ed. &mdash; excellent treatment of quicksort, mergesort, and practical implementations</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Knuth</span><span style="color:var(--text)"><em>The Art of Computer Programming, Vol. 3: Sorting and Searching</em> &mdash; exhaustive mathematical analysis</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Peters (2002)</span><span style="color:var(--text)"><a href="https://github.com/python/cpython/blob/main/Objects/listsort.txt">listsort.txt</a> &mdash; Tim Peters' original Timsort description</span></div>
+      <div style="display:flex; gap:0.6em; align-items:baseline; font-size:0.52em; margin:0.4em 0;"><span style="font-family:'Azeret Mono',monospace; color:var(--amber); min-width:9em; font-size:0.9em;">Musser (1997)</span><span style="color:var(--text)"><em>Introspective Sorting and Selection Algorithms</em> &mdash; the Introsort paper</span></div>
       <div class="card blue" style="margin-top:0.8em">
         <p>
         <span class="pill amber">Timsort</span>
