@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-concept="swiss" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,6 +137,42 @@
 .reveal .slides > section { display: flex !important; flex-direction: column !important; overflow-y: auto !important; align-items: stretch !important; justify-content: flex-start !important; }
 </style>
 <style>.reveal .slide-number{background-color:transparent}</style>
+<style id="deck-concept">@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap');
+html[data-concept=swiss] .reveal .slides section.title-slide.present:has(.sw-fig){display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);grid-auto-rows:min-content;column-gap:56px;align-content:center;text-align:left;height:100%;padding:40px 10px!important;box-sizing:border-box}
+html[data-concept=swiss] .title-slide>*{grid-column:1;margin-left:0!important;margin-right:0!important;max-width:none!important}
+html[data-concept=swiss] .title-slide div[style*="letter-spacing"],html[data-concept=swiss] .title-slide div[style*="width:60px"]{display:none!important}
+html[data-concept=swiss] .title-slide>div:not(.sw-head):not([class]){padding:0!important;text-align:left!important}
+html[data-concept=swiss] .sw-head{grid-column:1/-1!important;display:flex;justify-content:space-between;border-top:6px solid var(--red,#db3a30);padding-top:10px;margin-bottom:34px;font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-size:.38em;font-weight:600;color:var(--text,#161616)}
+html[data-concept=swiss] .sw-head span:last-child{color:var(--muted,#6a6a63);font-weight:400}
+html[data-concept=swiss] .title-slide h1{font-size:1.75em!important;hyphens:manual;overflow-wrap:normal;word-break:normal;font-weight:800!important;letter-spacing:-.035em;line-height:.95!important;color:var(--text,#161616)!important;text-transform:none!important;text-align:left!important;margin:0 0 .35em!important}
+html[data-concept=swiss] .title-slide .subtitle{font-size:.5em!important;line-height:1.45!important;color:var(--text,#161616)!important;border-top:2px solid var(--text,#161616);padding-top:.6em;margin-bottom:.8em!important;text-align:left!important}
+html[data-concept=swiss] .title-slide .meta{font-size:.36em!important;text-align:left!important}
+html[data-concept=swiss] .title-slide .pill{border-radius:0!important;background:none!important;border:0!important;border-left:4px solid var(--red,#db3a30)!important;color:var(--text,#161616)!important;padding:0 .5em!important}
+html[data-concept=swiss] .sw-fig{grid-column:2!important;grid-row:2/span 8;margin:0!important;align-self:start}
+html[data-concept=swiss] .sw-fig figcaption{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-size:.3em;line-height:1.45;color:var(--muted,#6a6a63);margin-top:.6em;text-align:left}
+html[data-concept=swiss] .concept-art{display:block;width:100%;height:auto;overflow:visible}
+html[data-concept=swiss] .concept-art .sw-node{fill:#fff;stroke:#161616;stroke-width:2}
+html[data-concept=swiss] .concept-art .sw-hot{fill:#db3a30;stroke:#db3a30}
+html[data-concept=swiss] .concept-art .sw-edge{stroke:#161616;stroke-width:1.6}
+html[data-concept=swiss] .concept-art .sw-thin{stroke-width:.8;opacity:.6}
+html[data-concept=swiss] .concept-art .sw-hotl,html[data-concept=swiss] .concept-art .sw-redl{stroke:#db3a30;stroke-width:4}
+html[data-concept=swiss] .concept-art .sw-curve{fill:none;stroke:#161616;stroke-width:2.2}
+html[data-concept=swiss] .concept-art path.sw-redl{fill:none}
+html[data-concept=swiss] .concept-art .sw-cell{fill:#fff;stroke:#161616;stroke-width:1.2}
+html[data-concept=swiss] .concept-art .sw-on{fill:#db3a30;stroke:#161616}
+html[data-concept=swiss] .concept-art .sw-one{fill:#161616}
+html[data-concept=swiss] .concept-art .sw-dark{fill:#e9e9e4}
+html[data-concept=swiss] .concept-art .sw-bar{fill:#161616}
+html[data-concept=swiss] .concept-art .sw-redf{fill:#db3a30}
+html[data-concept=swiss] .concept-art .sw-queen{fill:#db3a30}
+html[data-concept=swiss] .concept-art text{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;fill:#161616;font-size:13px}
+html[data-concept=swiss] .concept-art .sw-nt{font-size:13px;font-weight:700}
+html[data-concept=swiss] .concept-art .sw-hott,html[data-concept=swiss] .concept-art .sw-inv{fill:#fff}
+html[data-concept=swiss] .concept-art .sw-w{font-size:11px;fill:#6a6a63}
+html[data-concept=swiss] .concept-art .sw-b{font-weight:700}
+html[data-concept=swiss] .concept-art .sw-red{fill:#db3a30;font-weight:700}
+html[data-concept=swiss] .concept-art .sw-mut{fill:#6a6a63}
+</style>
 </head>
 <body>
 <div class="reveal">
@@ -146,6 +182,7 @@
   SLIDE 01 — Title
 ══════════════════════════════════════════════════════════════════ -->
 <section class="title-slide" data-background-color="#fafaf8">
+<!-- deck-concept:start --><div class="sw-head" aria-hidden="true"><span>Computer science fundamentals</span><span>Sorting Algorithms</span></div><figure class="sw-fig"><svg class="concept-art" viewBox="0 0 480 420" role="img" aria-label="Bars of an array part-way through bottom-up merge sort" xmlns="http://www.w3.org/2000/svg"><rect class="sw-bar" x="20" y="288" width="15" height="72"/><rect class="sw-bar" x="38" y="222" width="15" height="138"/><rect class="sw-bar" x="56" y="195" width="15" height="165"/><rect class="sw-bar" x="74" y="96" width="15" height="264"/><rect class="sw-bar sw-redf" x="92" y="327" width="15" height="33"/><rect class="sw-bar sw-redf" x="110" y="318" width="15" height="42"/><rect class="sw-bar sw-redf" x="128" y="309" width="15" height="51"/><rect class="sw-bar sw-redf" x="146" y="141" width="15" height="219"/><rect class="sw-bar" x="164" y="324" width="15" height="36"/><rect class="sw-bar" x="182" y="207" width="15" height="153"/><rect class="sw-bar" x="200" y="153" width="15" height="207"/><rect class="sw-bar" x="218" y="123" width="15" height="237"/><rect class="sw-bar sw-redf" x="236" y="333" width="15" height="27"/><rect class="sw-bar sw-redf" x="254" y="312" width="15" height="48"/><rect class="sw-bar sw-redf" x="272" y="264" width="15" height="96"/><rect class="sw-bar sw-redf" x="290" y="180" width="15" height="180"/><rect class="sw-bar" x="308" y="321" width="15" height="39"/><rect class="sw-bar" x="326" y="312" width="15" height="48"/><rect class="sw-bar" x="344" y="255" width="15" height="105"/><rect class="sw-bar" x="362" y="186" width="15" height="174"/><rect class="sw-bar sw-redf" x="380" y="324" width="15" height="36"/><rect class="sw-bar sw-redf" x="398" y="183" width="15" height="177"/><rect class="sw-bar sw-redf" x="416" y="135" width="15" height="225"/><rect class="sw-bar sw-redf" x="434" y="129" width="15" height="231"/><text class="sw-t sw-b" x="20" y="405" text-anchor="start" style="font-size:14px">bottom-up merge sort after 2 passes: sorted runs of 4</text></svg><figcaption>Sorting, frozen mid-run: after two passes of bottom-up merge sort the array is sorted runs of four, alternately shaded.</figcaption></figure><!-- deck-concept:end -->
   <div style="font-family:'Azeret Mono',monospace; font-size:.5em; color:var(--muted); margin-bottom:.4em; letter-spacing:.1em;">COMPUTER SCIENCE FUNDAMENTALS SERIES</div>
   <h1>Sorting<br>Algorithms</h1>
   <div class="subtitle">
